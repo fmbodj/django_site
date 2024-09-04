@@ -1,1 +1,51 @@
-# Créez ici votre docker compose
+version: '3'
+
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.front
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    networks:
+      - todolist-network
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    ports:
+      - "8001:8000"
+    depends_on:
+      - db
+    networks:
+      - todolist-network
+
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_DB: todolist_db
+      POSTGRES_USER: todolist_user
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+    networks:
+      - todolist-network
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - "80:80"
+    depends_on:
+      - frontend
+      - api
+    networks:
+      - todolist-network
+
+networks:
+  todolist-network:
+    driver: bridge

@@ -138,3 +138,10 @@ kubectl version --client
 Si la dernière commande vous affiche la version de kubectl, c'est qu'il est correctement installé.
 
 Et c'est parti !
+
+/ - Liste des tâches
+/task/add/ - Ajouter une tâche
+/task/<id>/edit/ - Modifier une tâche
+/task/<id>/delete/ - Supprimer une tâche
+/api/tasks/ - Endpoints API pour les tâches
+
