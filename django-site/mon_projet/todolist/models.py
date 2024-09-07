@@ -9,5 +9,3 @@ class Task(models.Model):
 
     def __str__(self):
         return self.title
-class task_todolist(models.Model):
-    title = models.CharField(max_length=255)

@@ -1,14 +1,40 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
-    <title>Task List</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des tâches</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <h1>Task List</h1>
-    <ul>
-        {% for task in tasks %}
-            <li>{{ task.name }}</li>
-        {% endfor %}
-    </ul>
+    <div class="container mt-4">
+        <h1 class="text-center">Liste des tâches</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Titre</th>
+                    <th>Description</th>
+                    <th>Date de création</th>
+                    <th>Statut</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for task in tasks %}
+                <tr>
+                    <td>{{ task.title }}</td>
+                    <td>{{ task.description }}</td>
+                    <td>{{ task.created_at }}</td>
+                    <td>{% if task.status %}Fait{% else %}À faire{% endif %}</td>
+                    <td>
+                        <a href="{% url 'task_edit' task.pk %}" class="btn btn-sm btn-primary">Modifier</a>
+                        <a href="{% url 'task_delete' task.pk %}" class="btn btn-sm btn-danger">Supprimer</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="{% url 'task_add' %}" class="btn btn-success">Ajouter une nouvelle tâche</a>
+    </div>
 </body>
 </html>
