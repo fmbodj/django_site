@@ -1,14 +1,3 @@
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'todolist_db',
-#         'USER': 'todolist_user',
-#         'PASSWORD': 'password',
-#         'HOST': 'db',
-#         'PORT': '5432',
-#     }
-# }
-
 """
 Django settings for mon_projet_django project.
 
@@ -49,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'todolist',
+    'rest_framework',
+    'api'
 ]
 
 MIDDLEWARE = [
@@ -129,7 +120,30 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Paramètres spécifiques pour Django REST Framework
+REST_FRAMEWORK = {
+    # Classes de permissions par défaut pour sécuriser les API
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny',
+    #    'rest_framework.permissions.IsAuthenticated',  # Accès limité aux utilisateurs authentifiés
+    ],
+    # Classes d'authentification pour la gestion des sessions et des tokens
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        # 'rest_framework.authentication.SessionAuthentication',  # Authentification basée sur les sessions
+        # 'rest_framework.authentication.TokenAuthentication',  # Authentification basée sur les tokens
+    ],
+    # Analyseurs de requêtes pour supporter les formats de données entrants, principalement JSON
+    'DEFAULT_PARSER_CLASSES': [
+        'rest_framework.parsers.JSONParser',  # Analyse les données JSON entrantes
+    ],
+    # Moteurs de rendu pour formater les réponses en JSON
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',  # Formatage des réponses en JSON
+    ]
+}
