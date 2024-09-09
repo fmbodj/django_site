@@ -43,3 +43,27 @@ th, td {
     text-align: left;
     border-bottom: 1px solid #ddd;
 }
+
+button {
+    padding: 10px 15px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.delete-button {
+    background-color: #ff6347; /* Tomate Rouge */
+    color: white;
+}
+
+.cancel-button {
+    background-color: #ccc; /* Gris */
+    color: black;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
