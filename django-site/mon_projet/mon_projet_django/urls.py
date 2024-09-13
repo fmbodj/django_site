@@ -10,7 +10,8 @@ router.register(r'tasks', api_views.TaskViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('todolist/', todolist_views.task_list, name='task_list'),
+    #path('todolist/', todolist_views.task_list, name='task_list'),
+    path('', todolist_views.task_list, name='task_list'),
     path('todolist/add/', todolist_views.task_add, name='task_add'),
     path('todolist/<int:pk>/edit/', todolist_views.task_edit, name='task_edit'),
     path('todolist/<int:pk>/delete/', todolist_views.task_delete, name='task_delete'),
